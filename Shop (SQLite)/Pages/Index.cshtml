@@ -1,0 +1,23 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <div class="container">
+        <a asp-page="/ForShop/Products" asp-route-gender="men" style="width:410px;display:inline-block;text-decoration:none;color:black">
+            <div class="container" style="width:410px">
+                <img src="img/FP1.jpg" height="400" />
+                <h5>Мужское</h5>
+            </div>
+        </a>
+        <a asp-page="/ForShop/Products" asp-route-gender="women" style="width:410px;display:inline-block;text-decoration:none;color:black">
+            <div class="container" style="width:410px">
+                <img src="img/FP2.jpg" height="400" />
+                <h5>Женское</h5>
+            </div>
+        </a>
+    </div>
+    <h2 style="margin:20px">Новые поступления</h2>
+</div>

@@ -1,0 +1,54 @@
+﻿@page "{name}/{handler?}"
+@using Shop__SQLite_.Data;
+@model Shop__SQLite_.Pages.ForShop.ViewModel
+@{
+}
+
+<link rel="stylesheet" href="~/css/ClothInfo.css" />
+
+<form method="post" style="margin-top:50px;" runat="server" enctype="multipart/form-data">
+    <div class="block-left">
+        @foreach (Images image in Model.productView.ImagesList)
+        {
+            <img src="/Img/Clothes/@image.Name" style="width:100%;height:100%;display:inline;" />
+        }
+    </div>
+    <div class="block-right">
+        <div class="product-page_card" method="post">
+            <div class=" content">
+                <label style="font-size:24px;margin-top:35px;z-index=1;width:200px; border:none;width:200px;">@Model.productView.Brand</label>
+
+            </div>
+            <div class="content">
+                <label style="color:lightgraywidth:300px;">@Model.productView.Name</label>
+            </div>
+            <div class=" content">
+                <label>Доступные размеры</label>
+                <p style="margin-top:15px;">
+                    @foreach (var item in Model.productView.SizesList)
+                    {
+                        <div class="form_radio_btn">
+                            <input id="@item.Name" type="radio" name="@item.Name" value="@item.Name">
+                            <label for="@item.Name">@item.Name</label>
+                        </div>
+                    }
+                </p>
+            </div>
+            <div class="content">
+                <p>
+                    <label style="height:60px;font-size:20px; border-top: 3px solid lightgray;">@Model.productView.Price ₽</label>
+                </p>
+            </div>
+
+            <div class="content">
+                <details>
+                    <summary>Описание</summary>
+                    <p align="justify">@Model.productView.Description</p>
+                </details>
+
+            </div>
+            <button type="submit" style="margin:25px;" class="btn-add btn">Добавить товар</button>
+        </div>
+
+    </div>
+</form>

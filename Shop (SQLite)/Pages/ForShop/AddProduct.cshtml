@@ -1,0 +1,159 @@
+﻿@page
+@model Shop__SQLite_.Pages.ForShop.AddProductModel
+@{
+}
+<link rel="stylesheet" href="~/css/ClothInfo.css" />
+
+<form method="post" style="margin-top:50px;" runat="server" enctype="multipart/form-data">
+    <div class="block-left">
+        <div class="content" style="width:auto">
+            <input asp-for="@Model.input.Images[0].ImageFile"  accept="image/*" type="file" id="imgInp0" />
+            <img id="img0" style="width:100%;height:100%;display:inline;" />
+            <script>
+                imgInp0.onchange = evt => {
+                    const [file] = imgInp0.files
+                    if (file) {
+                        img0.src = URL.createObjectURL(file)
+                        imgInp0.style = "display:none"
+                    }
+                }
+            </script>
+        </div>
+        <div class="content" style="width:auto">
+            <input asp-for="@Model.input.Images[1].ImageFile" accept="image/*" type='file' id="imgInp1" />
+            <img id="img1" style="width:100%;height:100%;display:inline" />
+            <script>
+                imgInp1.onchange = evt => {
+                    const [file] = imgInp1.files
+                    if (file) {
+                        img1.src = URL.createObjectURL(file)
+                        imgInp1.style="display:none"
+                    }
+                }
+            </script>
+        </div>
+        <div class="content" style="width:auto">
+            <input asp-for="@Model.input.Images[2].ImageFile" accept="image/*" type='file' id="imgInp2" />
+            <img id="img2" style="width:100%;height:100%;display:inline;" />
+            <script>
+                imgInp2.onchange = evt => {
+                    const [file] = imgInp2.files
+                    if (file) {
+                        img2.src = URL.createObjectURL(file)
+                        imgInp2.style="display:none"
+                    }
+                }
+            </script>
+        </div>
+        <div class="content" style="width:auto">
+            <input asp-for="@Model.input.Images[3].ImageFile" accept="image/*" type='file' id="imgInp3" />
+            <img id="img3" style="width:100%;height:100%;display:inline;" />
+            <script>
+                imgInp3.onchange = evt => {
+                    const [file] = imgInp3.files
+                    if (file) {
+                        img3.src = URL.createObjectURL(file)
+                        imgInp3.style="display:none"
+                    }
+                }
+            </script>
+        </div>
+        <div class="content" style="width:auto">
+            <input asp-for="@Model.input.Images[4].ImageFile" accept="image/*" type='file' id="imgInp4" />
+            <img id="img4" style="width:100%;height:100%;display:inline;" />
+            <script>
+                imgInp4.onchange = evt => {
+                    const [file] = imgInp4.files
+                    if (file) {
+                        img4.src = URL.createObjectURL(file)
+                        imgInp4.style="display:none"
+                    }
+                }
+            </script>
+        </div>
+    </div>
+    <div class="block-right">
+        <div class="product-page_card" method="post">
+            <div class=" content">
+                <input placeholder="Бренд" style="font-size:24px;margin-top:35px;margin-left:30px;z-index=1;width:200px; border:none;width:200px;" asp-for=input.Brand list="Brands">
+                <datalist id="Brands" style="background-color:white">
+                    @foreach (var brand in Model.Brands)
+                    {
+                        <option value="@brand.Name" />
+                    }
+                </datalist>
+                <p> <span asp-validation-for="input.Brand" class="text-danger"></span></p>
+            </div>
+            <div class="content">
+                <input style="color:lightgraywidth:300px;" placeholder="Название" asp-for="input.Name" />
+                <p> <span asp-validation-for="input.Name" class="text-danger"></span></p>
+            </div>
+            <div class=" content">
+                <label>Доступные размеры</label>
+                <p style="margin-top:15px;">
+                    <input class=" size" style="margin-right:5px;" asp-for=input.minSize list="Sizes">
+                    <input class=" size" style="margin-left:5px;" asp-for=input.maxSize list="Sizes">
+                </p>
+                <p>
+                    <span asp-validation-for="input.minSize" class="text-danger"></span>
+                    <span asp-validation-for="input.maxSize" class="text-danger"></span>
+                </p>
+                <datalist id="Sizes">
+                    @foreach (var size in Model.Sizes)
+                    {
+                        <option value="@size.Name" />
+                    }
+                </datalist>
+            </div>
+            <div class=" content">
+                <label>Количество в одном размере</label>
+                <input asp-for="input.countSize" />
+                <p> <span asp-validation-for="input.countSize" class="text-danger"></span></p>
+            </div>
+            <div class="content">
+                <p>
+                    <input asp-for="input.Price" style="height:60px;font-size:20px; border-top: 3px solid lightgray;" />
+                    <label style="margin-left:10px;">₽</label>
+                </p>
+                <p> <span asp-validation-for="input.countSize" class="text-danger"></span></p>
+            </div>
+            <div class="content">
+                <input asp-for=input.Gender placeholder="Пол" list="Genders">
+                <datalist id="Genders" style="background-color:white">
+                    @foreach (var gender in Model.Genders)
+                    {
+                        <option value="@gender.Name" />
+                    }
+                </datalist>
+                <p> <span asp-validation-for="input.Gender" class="text-danger"></span></p>
+            </div>
+            <div class="content">
+                <input asp-for=input.Category list="Categories" placeholder="Категория">
+                <datalist id="Categories" style="background-color:white">
+                    @foreach (var category in Model.Categories)
+                    {
+                        <option value="@category.Name" />
+                    }
+                </datalist>
+                <p> <span asp-validation-for="input.Category" class="text-danger"></span></p>
+            </div>
+            <div class="content">
+                <input asp-for=input.Color list="Colors" placeholder="Цвет">
+                <datalist id="Colors" style="background-color:white">
+                    @foreach (var color in Model.Colors)
+                    {
+                        <option value="@color.Name" />
+                    }
+                </datalist>
+                <p> <span asp-validation-for="input.Color" class="text-danger"></span></p>
+            </div>
+            <div class="content">
+                <textarea asp-for="input.Description" placeholder="Описание" style="text-align:start;height:100px;width:300px; border: 3px solid lightgray;"></textarea>
+                <p> <span asp-validation-for="input.Description" class="text-danger"></span></p>
+            </div>
+            @Html.ValidationSummary()
+            <button type="submit" style="margin:25px;" class="btn-add btn">Добавить товар</button>
+        </div>
+
+    </div>
+</form>

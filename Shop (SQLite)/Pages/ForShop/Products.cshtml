@@ -1,0 +1,97 @@
+﻿@page "{gender}/{handler?}"
+@model Shop__SQLite_.Pages.ForShop.ProductsModel
+@{
+}
+<link rel="stylesheet" href="~/css/NavBars.css" asp-append-version="true" />
+
+<style>
+    .product-card {
+        width: 230px;
+        height: 350px;
+        border: 3px solid lightgray;
+        text-align: center;
+        align-content: center;
+        display: inline-block;
+        margin: 10px;
+    }
+</style>
+
+<div class=" block-left">
+    <a asp-page="/index" style="text-decoration:none;color:lightgray;font-size:14px;margin-top:10px;">Главная /</a>
+    <a style="font-size:14px;margin-top:10px;"> @Model.Info</a>
+    <div class="sidenav">
+        В разработке
+        <h5>Фильтр</h5>
+        <h6>Цена</h6>
+        <h6>Категория</h6>
+        <div class="container" style="width:300px; height: 300px; overflow-y: scroll;">
+            @foreach (string category in Model.Categories.Select(c => c.Name))
+            {
+                <div>
+                    <input type="checkbox" />
+                    <label>@category</label>
+                </div>
+            }
+        </div>
+        <h6>Цвет</h6>
+        <div class="container" style="width:300px; height: 300px; overflow-y: scroll;">
+            @foreach (string color in Model.Colors.Select(c => c.Name))
+            {
+                <div>
+                    <input type="checkbox" />
+                    <label>@color</label>
+                </div>
+            }
+        </div>
+        <h6>Размер</h6>
+        <div class="container" style="width:300px; height: 300px; overflow-y: scroll;">
+            @foreach (string size in Model.Sizes.Select(c => c.Name))
+            {
+                <div>
+                    <input type="checkbox" />
+                    <label>@size</label>
+                </div>
+            }
+        </div>
+        <h6>Бренд</h6>
+        <div class="container" style="width:300px; height: 300px; overflow-y: scroll;">
+            @foreach (string brand in Model.Brands.Select(c => c.Name))
+            {
+                <div>
+                    <input type="checkbox" />
+                    <label>@brand</label>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<div class="block-right">
+    <div style="margin-top:66px">
+        @foreach (Models.Card product in Model.Cards)
+        {
+            <a asp-page="/ForShop/View" asp-route-name="@product.Name.Replace(" ","-")" style="text-decoration:none;color:black;">
+                <div class="product-card">
+                    <img src="~/Img/Clothes/@product.imgSrc" style="margin-top:50px;" width="220px" height="160px">
+                    <p style="margin:4px;">@product.Brand</p>
+                    <p style="margin:2px;font-size:12px;color:gray">@product.Category</p>
+                    <p style="margin:2px;font-size:12px;color:gray">@product.Name</p>
+                    <p style="margin-top:20px;">@product.Price ₽</p>
+
+                </div>
+            </a>
+
+        }
+            <a asp-page="/ForShop/AddProduct" style="text-decoration:none;color:white;">
+                <div class="product-card" >
+                <img src="~/Img/plus.png" style=" width:70px;height:70px; margin-top:130px;">
+                <p style="margin:4px;">S</p>
+                <p style="margin:2px;font-size:12px;">a</p>
+                <p style="margin:2px;font-size:12px;">n</p>
+                <p style="margin-top:30px;">T</p>
+                </div>
+            </a>
+
+        
+    </div>
+
+</div>
